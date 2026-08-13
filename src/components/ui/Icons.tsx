@@ -5,6 +5,7 @@ import {
   faCircleCheck,
   faClock,
   faComment,
+  faDroplet,
   faFileLines,
   faHouse,
   faLightbulb,
@@ -12,7 +13,10 @@ import {
   faLocationDot,
   faMap,
   faPlus,
+  faRoad,
   faShareNodes,
+  faTrashCan,
+  faTree,
   faTicket,
   faThumbsUp,
   faUser,
@@ -84,4 +88,20 @@ export const ShareIcon = ({ className }: IconProps) => (
 
 export const SparkIcon = ({ className }: IconProps) => (
   <FontAwesomeIcon icon={faLightbulb} className={className} />
+)
+
+export const RoadIcon = ({ className }: IconProps) => (
+  <FontAwesomeIcon icon={faRoad} className={className} />
+)
+
+export const WaterIcon = ({ className }: IconProps) => (
+  <FontAwesomeIcon icon={faDroplet} className={className} />
+)
+
+export const TrashIcon = ({ className }: IconProps) => (
+  <FontAwesomeIcon icon={faTrashCan} className={className} />
+)
+
+export const TreeIcon = ({ className }: IconProps) => (
+  <FontAwesomeIcon icon={faTree} className={className} />
 )

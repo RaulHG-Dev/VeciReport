@@ -6,11 +6,11 @@ import type {
 } from '../types/dashboard'
 
 export const navItems: NavItem[] = [
-  { id: 'home', label: 'Inicio', icon: 'home' },
-  { id: 'map', label: 'Mapa', icon: 'map' },
-  { id: 'reports', label: 'Reportes', icon: 'list' },
-  { id: 'my-reports', label: 'Mis reportes', icon: 'document' },
-  { id: 'profile', label: 'Perfil', icon: 'user' },
+  { id: 'home', label: 'Inicio', icon: 'home', path: '/' },
+  { id: 'map', label: 'Mapa', icon: 'map', path: '/mapa' },
+  { id: 'reports', label: 'Reportes', icon: 'list', path: '/reportar' },
+  { id: 'my-reports', label: 'Mis reportes', icon: 'document', path: '/mis-reportes' },
+  { id: 'profile', label: 'Perfil', icon: 'user', path: '/perfil' },
 ]
 
 export const metrics: Metric[] = [

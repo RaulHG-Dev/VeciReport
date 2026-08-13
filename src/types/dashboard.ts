@@ -2,6 +2,7 @@ export interface NavItem {
   id: string
   label: string
   icon: 'home' | 'map' | 'list' | 'document' | 'user'
+  path?: string
 }
 
 export interface Metric {
@@ -33,4 +34,24 @@ export interface ActivityItem {
   context: string
   timeAgo: string
   tone: 'primary' | 'success' | 'warning' | 'secondary'
+}
+
+export interface MyReportItem {
+  id: string
+  title: string
+  description: string
+  status: 'en-proceso' | 'resuelto' | 'confirmado'
+  statusLabel: string
+  statusTone: 'warning' | 'success' | 'secondary'
+  createdAt: string
+  supports: number
+  imageUrl?: string
+}
+
+export interface RecentNotificationItem {
+  id: string
+  title: string
+  subtitle: string
+  timeAgo: string
+  tone: 'primary' | 'success' | 'secondary'
 }

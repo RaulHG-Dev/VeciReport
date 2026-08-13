@@ -1,4 +1,5 @@
 import { navItems } from '../../services/dashboard.mock'
+import { NavLink } from 'react-router-dom'
 import { cn } from '../../utils/cn'
 import {
   DocumentIcon,
@@ -19,9 +20,10 @@ const iconByName = {
 
 interface SidebarProps {
   compact?: boolean
+  activeItem?: 'home' | 'map' | 'reports' | 'my-reports' | 'profile'
 }
 
-export const Sidebar = ({ compact = false }: SidebarProps) => (
+export const Sidebar = ({ compact = false, activeItem = 'home' }: SidebarProps) => (
   <aside
     className={cn(
       'flex h-full w-full flex-col justify-between border-r border-border bg-surface py-6 transition-all',
@@ -45,9 +47,29 @@ export const Sidebar = ({ compact = false }: SidebarProps) => (
       )}
 
       <nav aria-label="Principal" className="space-y-1">
-        {navItems.map((item, index) => {
+        {navItems.map((item) => {
           const Icon = iconByName[item.icon]
-          const isActive = index === 0
+          const isActive = item.id === activeItem
+
+          if (item.path) {
+            return (
+              <NavLink
+                key={item.id}
+                to={item.path}
+                title={item.label}
+                className={cn(
+                  'group flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-semibold transition',
+                  isActive
+                    ? 'bg-secondary/10 text-secondary'
+                    : 'text-tertiary hover:bg-secondary/6 hover:text-secondary',
+                  compact && 'justify-center px-2',
+                )}
+              >
+                <Icon className="size-4" />
+                {!compact && item.label}
+              </NavLink>
+            )
+          }
 
           return (
             <button
@@ -70,15 +92,15 @@ export const Sidebar = ({ compact = false }: SidebarProps) => (
       </nav>
     </div>
 
-    <button
-      type="button"
+    <NavLink
+      to="/reportar"
       title="Reportar"
       className={cn(
-        'rounded-xl bg-secondary text-sm font-bold text-white shadow-soft transition hover:bg-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2',
+        'rounded-xl bg-secondary text-center text-sm font-bold text-white shadow-soft transition hover:bg-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2',
         compact ? 'mx-auto grid size-11 place-items-center rounded-2xl' : 'w-full px-4 py-3',
       )}
     >
       {compact ? <PlusIcon className="size-4" /> : '+ Reportar'}
-    </button>
+    </NavLink>
   </aside>
 )

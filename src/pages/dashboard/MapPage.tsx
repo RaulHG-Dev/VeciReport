@@ -1,15 +1,13 @@
-import { ActivityPanel } from '../../components/common/ActivityPanel'
 import { BottomNav } from '../../components/common/BottomNav'
+import { MapFiltersPanel } from '../../components/common/MapFiltersPanel'
 import { MobileTopBar } from '../../components/common/MobileTopBar'
 import { Sidebar } from '../../components/common/Sidebar'
-import { IssueCard } from '../../components/ui/IssueCard'
+import { IncidentsMap } from '../../components/ui/IncidentsMap'
 import { ListIcon } from '../../components/ui/Icons'
-import { TopSummary } from '../../components/ui/TopSummary'
 import { useSidebarPreference } from '../../hooks/useSidebarPreference'
-import { nearbyReports } from '../../services/dashboard.mock'
 import { cn } from '../../utils/cn'
 
-export const DashboardPage = () => {
+export const MapPage = () => {
   const { isExpanded, toggleSidebar } = useSidebarPreference()
 
   return (
@@ -21,7 +19,7 @@ export const DashboardPage = () => {
         )}
       >
         <div className="hidden lg:block">
-          <Sidebar compact={!isExpanded} activeItem="home" />
+          <Sidebar compact={!isExpanded} activeItem="map" />
         </div>
 
         <main className="relative">
@@ -42,35 +40,18 @@ export const DashboardPage = () => {
               </button>
             </div>
 
-            <TopSummary />
-
-            <section className="grid gap-6 lg:grid-cols-[1fr_340px]">
-              <div>
-                <div className="mb-4 flex items-center justify-between">
-                  <h3 className="text-4xl font-extrabold tracking-tight text-tertiary">
-                    Reportes Cercanos
-                  </h3>
-                  <button type="button" className="text-sm font-semibold text-secondary">
-                    Ver todos
-                  </button>
-                </div>
-
-                <div className="space-y-4">
-                  {nearbyReports.map((report) => (
-                    <IssueCard key={report.id} report={report} />
-                  ))}
-                </div>
-              </div>
+            <section className="grid gap-6 lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_320px]">
+              <IncidentsMap />
 
               <div className="hidden lg:block">
-                <ActivityPanel />
+                <MapFiltersPanel />
               </div>
             </section>
           </div>
         </main>
       </div>
 
-      <BottomNav activeItem="home" />
+      <BottomNav activeItem="map" />
     </>
   )
 }
