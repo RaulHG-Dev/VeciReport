@@ -2,15 +2,13 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 interface ColonyForm {
-  colonyName: string
-  municipality: string
+  communityName: string
   leaderName: string
   email: string
 }
 
 const initialForm: ColonyForm = {
-  colonyName: '',
-  municipality: '',
+  communityName: '',
   leaderName: '',
   email: '',
 }
@@ -33,13 +31,13 @@ export const HomePage = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
-    const inviteCode = generateInviteCode(form.colonyName)
+    const inviteCode = generateInviteCode(form.communityName)
 
     window.localStorage.setItem('colony-invite-code', inviteCode)
 
     const params = new URLSearchParams({
       email: form.email,
-      colonia: form.colonyName,
+      comunidad: form.communityName,
       lider: form.leaderName,
       codigoColonia: inviteCode,
     })
@@ -51,18 +49,15 @@ export const HomePage = () => {
     <main className="min-h-screen space-y-6 px-4 py-8 sm:px-6 lg:px-12">
       <section className="mx-auto grid max-w-6xl gap-8 rounded-3xl border border-border bg-surface p-6 shadow-soft lg:grid-cols-[1.1fr_0.9fr] lg:p-10">
         <div className="space-y-6">
-          <p className="inline-flex rounded-full bg-secondary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-secondary">
-            Plataforma vecinal
-          </p>
           <h1 className="font-display text-5xl font-extrabold leading-tight text-tertiary sm:text-6xl">
-            Tu colonia conectada para resolver incidentes mas rapido.
+            Tu comunidad conectada para resolver incidentes mas rapido.
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-muted">
             VeciReport ayuda a tu comunidad a reportar problemas urbanos, coordinar apoyos y dar
             seguimiento transparente con evidencia geolocalizada.
           </p>
 
-          <div className="grid gap-3 sm:grid-cols-3">
+          {/* <div className="grid gap-3 sm:grid-cols-3">
             <article className="rounded-2xl border border-border bg-background px-4 py-4">
               <p className="text-3xl font-extrabold text-secondary">+2.4k</p>
               <p className="text-sm font-semibold text-muted">Reportes gestionados</p>
@@ -75,7 +70,7 @@ export const HomePage = () => {
               <p className="text-3xl font-extrabold text-primary">24h</p>
               <p className="text-sm font-semibold text-muted">Tiempo promedio</p>
             </article>
-          </div>
+          </div> */}
 
           <div className="flex flex-wrap gap-3">
             <Link
@@ -99,24 +94,13 @@ export const HomePage = () => {
 
           <form onSubmit={handleSubmit} className="mt-5 space-y-4">
             <label className="block space-y-1">
-              <span className="text-xs font-semibold uppercase tracking-wide text-muted">Nombre de la colonia</span>
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted">Nombre de tu comunidad</span>
               <input
                 required
-                value={form.colonyName}
-                onChange={(event) => setForm((prev) => ({ ...prev, colonyName: event.target.value }))}
+                value={form.communityName}
+                onChange={(event) => setForm((prev) => ({ ...prev, communityName: event.target.value }))}
                 className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
                 placeholder="Ej. San Rafael"
-              />
-            </label>
-
-            <label className="block space-y-1">
-              <span className="text-xs font-semibold uppercase tracking-wide text-muted">Municipio / Alcaldia</span>
-              <input
-                required
-                value={form.municipality}
-                onChange={(event) => setForm((prev) => ({ ...prev, municipality: event.target.value }))}
-                className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
-                placeholder="Ej. Benito Juarez"
               />
             </label>
 
@@ -151,27 +135,6 @@ export const HomePage = () => {
             </button>
           </form>
         </aside>
-      </section>
-
-      <section className="mx-auto grid max-w-6xl gap-5 rounded-3xl border border-border bg-surface p-6 shadow-soft lg:grid-cols-[1fr_0.9fr] lg:p-8">
-        <div className="space-y-3">
-          <h2 className="text-4xl font-extrabold tracking-tight text-tertiary">Invita a tus vecinos</h2>
-          <p className="max-w-xl text-sm text-muted">
-            El codigo unico se genera al registrar tu colonia y podras verlo dentro del panel.
-          </p>
-        </div>
-
-        <div className="flex flex-col justify-center gap-3 rounded-2xl border border-border bg-background p-5">
-          <p className="text-sm text-muted">
-            Ve al panel para copiar el codigo e invitar vecinos al registro con correo y contrasena.
-          </p>
-          <Link
-            to="/dashboard"
-            className="inline-flex justify-center rounded-xl bg-secondary px-6 py-3 text-sm font-bold text-white transition hover:bg-tertiary"
-          >
-            Ver codigo en el panel
-          </Link>
-        </div>
       </section>
     </main>
   )

@@ -1,8 +1,8 @@
 import { BottomNav } from '../../components/common/BottomNav'
 import { MobileTopBar } from '../../components/common/MobileTopBar'
 import { Sidebar } from '../../components/common/Sidebar'
-import { NewReportCategoryStep } from '../../components/ui/NewReportCategoryStep'
 import { ListIcon } from '../../components/ui/Icons'
+import { NewReportCategoryStep } from '../../components/ui/NewReportCategoryStep'
 import { useSidebarPreference } from '../../hooks/useSidebarPreference'
 import { cn } from '../../utils/cn'
 

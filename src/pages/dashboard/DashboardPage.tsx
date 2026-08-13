@@ -53,7 +53,7 @@ export const DashboardPage = () => {
               <div>
                 <div className="mb-3 flex items-center justify-between gap-2">
                   <h3 className="text-3xl font-extrabold tracking-tight text-tertiary sm:text-4xl">
-                    Reportes Cercanos
+                    Reportes de tu comunidad
                   </h3>
                   <button type="button" className="text-xs font-semibold text-secondary sm:text-sm">
                     Ver todos

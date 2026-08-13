@@ -18,7 +18,7 @@ export const TopSummary = () => (
   <section className="space-y-4 sm:space-y-5">
     <header className="space-y-1">
       <h2 className="text-3xl font-extrabold tracking-tight text-tertiary sm:text-4xl">Hola, Mariana!</h2>
-      <p className="text-base text-muted sm:text-xl">Aqui esta el resumen de tu colonia hoy.</p>
+      <p className="text-base text-muted sm:text-xl">Aqui esta el resumen de tu comunidad hoy.</p>
     </header>
 
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
