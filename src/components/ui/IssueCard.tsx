@@ -28,14 +28,14 @@ export const IssueCard = ({ report }: IssueCardProps) => {
   const CategoryIcon = categoryIcon[report.category]
 
   return (
-    <article className="rounded-3xl border border-border bg-surface px-4 py-4 shadow-card">
+    <article className="rounded-2xl border border-border bg-surface px-4 py-4 shadow-card sm:rounded-3xl">
       <div className="mb-3 flex items-start justify-between gap-3">
         <div className="flex items-start gap-3">
           <span className="grid size-10 place-items-center rounded-full bg-secondary/12 text-secondary">
             <CategoryIcon className="size-5" />
           </span>
           <div>
-            <h3 className="text-3xl font-bold leading-tight text-tertiary">{report.title}</h3>
+            <h3 className="text-xl font-bold leading-tight text-tertiary sm:text-3xl">{report.title}</h3>
             <p className="text-sm text-muted">
               {report.timeAgo} • {report.location}
             </p>
@@ -52,7 +52,7 @@ export const IssueCard = ({ report }: IssueCardProps) => {
         </span>
       </div>
 
-      <p className="mb-4 border-b border-border pb-4 text-xl leading-relaxed text-tertiary/85">
+      <p className="mb-4 border-b border-border pb-4 text-base leading-relaxed text-tertiary/85 sm:text-xl">
         {report.description}
       </p>
 

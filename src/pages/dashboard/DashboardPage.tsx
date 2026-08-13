@@ -1,5 +1,6 @@
 import { ActivityPanel } from '../../components/common/ActivityPanel'
 import { BottomNav } from '../../components/common/BottomNav'
+import { ColonyInviteCard } from '../../components/common/ColonyInviteCard'
 import { MobileTopBar } from '../../components/common/MobileTopBar'
 import { Sidebar } from '../../components/common/Sidebar'
 import { IssueCard } from '../../components/ui/IssueCard'
@@ -29,7 +30,7 @@ export const DashboardPage = () => {
 
           <MobileTopBar />
 
-          <div className="relative z-10 space-y-6 px-4 pb-28 pt-4 sm:px-5 lg:space-y-8 lg:p-10 lg:pb-10">
+          <div className="relative z-10 space-y-5 px-3 pb-28 pt-3 sm:px-5 lg:space-y-8 lg:p-10 lg:pb-10">
             <div className="hidden lg:flex lg:justify-end">
               <button
                 type="button"
@@ -44,13 +45,17 @@ export const DashboardPage = () => {
 
             <TopSummary />
 
-            <section className="grid gap-6 lg:grid-cols-[1fr_340px]">
+            <div className="lg:hidden">
+              <ColonyInviteCard />
+            </div>
+
+            <section className="grid gap-4 lg:gap-6 lg:grid-cols-[1fr_340px]">
               <div>
-                <div className="mb-4 flex items-center justify-between">
-                  <h3 className="text-4xl font-extrabold tracking-tight text-tertiary">
+                <div className="mb-3 flex items-center justify-between gap-2">
+                  <h3 className="text-3xl font-extrabold tracking-tight text-tertiary sm:text-4xl">
                     Reportes Cercanos
                   </h3>
-                  <button type="button" className="text-sm font-semibold text-secondary">
+                  <button type="button" className="text-xs font-semibold text-secondary sm:text-sm">
                     Ver todos
                   </button>
                 </div>
@@ -63,7 +68,10 @@ export const DashboardPage = () => {
               </div>
 
               <div className="hidden lg:block">
-                <ActivityPanel />
+                <div className="space-y-4">
+                  <ColonyInviteCard />
+                  <ActivityPanel />
+                </div>
               </div>
             </section>
           </div>

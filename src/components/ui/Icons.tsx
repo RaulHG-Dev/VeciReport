@@ -5,6 +5,7 @@ import {
   faCircleCheck,
   faClock,
   faComment,
+  faCopy,
   faDroplet,
   faFileLines,
   faHouse,
@@ -84,6 +85,10 @@ export const MessageIcon = ({ className }: IconProps) => (
 
 export const ShareIcon = ({ className }: IconProps) => (
   <FontAwesomeIcon icon={faShareNodes} className={className} />
+)
+
+export const CopyIcon = ({ className }: IconProps) => (
+  <FontAwesomeIcon icon={faCopy} className={className} />
 )
 
 export const SparkIcon = ({ className }: IconProps) => (

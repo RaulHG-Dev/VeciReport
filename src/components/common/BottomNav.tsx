@@ -12,7 +12,7 @@ type BottomNavActiveItem = 'home' | 'map'
 type BottomNavActiveItemExtended = BottomNavActiveItem | 'report' | 'my-reports' | 'profile'
 
 const mobileItems = [
-  { id: 'home', label: 'Inicio', icon: HomeIcon, path: '/' },
+  { id: 'home', label: 'Inicio', icon: HomeIcon, path: '/dashboard' },
   { id: 'map', label: 'Mapa', icon: MapIcon, path: '/mapa' },
   { id: 'my-reports', label: 'Mis Reportes', icon: CameraIcon, path: '/mis-reportes' },
   { id: 'profile', label: 'Perfil', icon: UserIcon, path: '/perfil' },

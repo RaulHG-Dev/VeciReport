@@ -6,7 +6,7 @@ import type {
 } from '../types/dashboard'
 
 export const navItems: NavItem[] = [
-  { id: 'home', label: 'Inicio', icon: 'home', path: '/' },
+  { id: 'home', label: 'Inicio', icon: 'home', path: '/dashboard' },
   { id: 'map', label: 'Mapa', icon: 'map', path: '/mapa' },
   { id: 'reports', label: 'Reportes', icon: 'list', path: '/reportar' },
   { id: 'my-reports', label: 'Mis reportes', icon: 'document', path: '/mis-reportes' },
