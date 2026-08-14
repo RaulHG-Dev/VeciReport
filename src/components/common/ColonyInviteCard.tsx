@@ -33,7 +33,7 @@ export const ColonyInviteCard = () => {
   }, [hasCode, joinPath])
 
   const inviteMessage = hasCode
-    ? `Unete a mi colonia en VeciReport con este codigo: ${inviteCode}. Registro: ${inviteUrl}`
+    ? `Unete a mi comunidad en VeciReport con este codigo: ${inviteCode}. Registro: ${inviteUrl}`
     : ''
 
   const copyInvite = async () => {
@@ -42,21 +42,8 @@ export const ColonyInviteCard = () => {
     }
 
     try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(inviteMessage)
-      } else {
-        const textArea = document.createElement('textarea')
-        textArea.value = inviteMessage
-        textArea.setAttribute('readonly', '')
-        textArea.style.position = 'absolute'
-        textArea.style.left = '-9999px'
-        document.body.appendChild(textArea)
-        textArea.select()
-        document.execCommand('copy')
-        document.body.removeChild(textArea)
-      }
-
-      setFeedback('Codigo copiado al portapapeles.')
+      await navigator.clipboard.writeText(inviteMessage);
+      setFeedback('Codigo copiado al portapapeles.');
     } catch {
       setFeedback('No se pudo copiar automaticamente. Intenta compartir directamente.')
     }

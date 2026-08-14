@@ -50,13 +50,13 @@ export const LoginPage = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-border bg-background p-5">
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Correo o usuario</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Correo</span>
             <input
               required
               value={form.identifier}
               onChange={(event) => setForm((prev) => ({ ...prev, identifier: event.target.value }))}
               className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
-              placeholder="correo@colonia.mx o tu usuario"
+              placeholder="correo@colonia.mx"
             />
           </label>
 
@@ -80,13 +80,13 @@ export const LoginPage = () => {
           </button>
 
           <p className="text-center text-xs text-muted">
-            No has registrado tu colonia?{' '}
+            ¿No has registrado tu comunidad?{' '}
             <Link to="/" className="font-semibold text-secondary hover:underline">
               Hazlo aqui
             </Link>
           </p>
           <p className="text-center text-xs text-muted">
-            Eres vecino y tienes codigo?{' '}
+            ¿Eres vecino y tienes codigo?{' '}
             <Link to="/unirse" className="font-semibold text-secondary hover:underline">
               Registrate aqui
             </Link>

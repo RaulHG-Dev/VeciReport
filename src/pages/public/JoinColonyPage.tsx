@@ -61,12 +61,12 @@ export const JoinColonyPage = () => {
           </p>
           <h1 className="font-display text-5xl font-extrabold text-tertiary">Registro vecinal</h1>
           <p className="text-sm text-muted">
-            Ingresa el codigo unico de tu colonia y crea tu perfil para colaborar en reportes.
+            Ingresa el codigo unico de tu comunidad y crea tu perfil para colaborar en reportes.
           </p>
           <div className="rounded-xl border border-border bg-background px-4 py-3">
             <p className="text-xs font-semibold uppercase tracking-wide text-muted">Que necesitas</p>
             <ul className="mt-2 space-y-1 text-sm text-tertiary">
-              <li>Codigo de colonia compartido por el representante.</li>
+              <li>Codigo de comunidad compartido por el representante.</li>
               <li>Nombre completo para identificarte en la comunidad.</li>
               <li>Correo y contrasena para ingresar despues.</li>
             </ul>
@@ -75,7 +75,7 @@ export const JoinColonyPage = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-border bg-background p-5">
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Codigo de colonia</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Codigo de comunidad</span>
             <input
               required
               value={form.colonyCode}

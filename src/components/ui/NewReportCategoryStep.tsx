@@ -14,7 +14,7 @@ export const NewReportCategoryStep = () => {
   const [isResolvingAddress, setIsResolvingAddress] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
+  // const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
   const urlApi = import.meta.env.VITE_URL_API;
 
   const selectedCategory = useMemo(
