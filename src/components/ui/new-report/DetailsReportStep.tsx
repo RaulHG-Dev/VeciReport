@@ -66,7 +66,7 @@ export const DetailsReportStep = ({
         />
       </label>
 
-      <label className="space-y-2">
+      <div className="space-y-2">
         <span className="inline-flex items-center gap-2 text-sm font-semibold text-tertiary">
           <FontAwesomeIcon icon={faLocationDot} className="text-secondary" />
           Ubicacion por mapa y GPS
@@ -80,7 +80,7 @@ export const DetailsReportStep = ({
               : draft.addressLabel || 'Selecciona un punto en el mapa para obtener la direccion'}
           </p>
         </div>
-      </label>
+      </div>
 
       <label className="space-y-2">
         <span className="inline-flex items-center gap-2 text-sm font-semibold text-tertiary">

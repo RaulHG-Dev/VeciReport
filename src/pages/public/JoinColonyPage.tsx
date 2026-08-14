@@ -57,7 +57,7 @@ export const JoinColonyPage = () => {
       <section className="mx-auto grid max-w-4xl gap-6 rounded-3xl border border-border bg-surface p-6 shadow-soft lg:grid-cols-[1fr_1fr] lg:p-10">
         <div className="space-y-4">
           <p className="inline-flex rounded-full bg-secondary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-secondary">
-            Unirse a colonia
+            Unirse a comunidad
           </p>
           <h1 className="font-display text-5xl font-extrabold text-tertiary">Registro vecinal</h1>
           <p className="text-sm text-muted">

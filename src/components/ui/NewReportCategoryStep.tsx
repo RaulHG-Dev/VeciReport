@@ -5,7 +5,7 @@ import { categories, initialDraft } from './new-report/constants'
 import { DetailsReportStep } from './new-report/DetailsReportStep'
 import { ReviewReportStep } from './new-report/ReviewReportStep'
 import { StepProgress } from './new-report/StepProgress'
-import type { DraftImage, ReportDraft, Step } from './new-report/types'
+import type { DraftImage, LocationGPS, ReportDraft, Step } from './new-report/types'
 
 export const NewReportCategoryStep = () => {
   const [step, setStep] = useState<Step>(1)
@@ -13,6 +13,9 @@ export const NewReportCategoryStep = () => {
   const [images, setImages] = useState<DraftImage[]>([])
   const [isResolvingAddress, setIsResolvingAddress] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
+  const urlApi = import.meta.env.VITE_URL_API;
 
   const selectedCategory = useMemo(
     () => categories.find((category) => category.id === draft.categoryId),
@@ -30,7 +33,8 @@ export const NewReportCategoryStep = () => {
 
     try {
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${coordinates.lat}&lon=${coordinates.lng}`,
+        `${urlApi}?format=jsonv2&lat=${coordinates.lat}&lon=${coordinates.lng}&zoom=18&addressdetails=1`,
+        // `https://us1.locationiq.com/v1/reverse?key=${apiKey}&lat=${coordinates.lat}&lon=${coordinates.lng}&format=json`,
         {
           headers: {
             Accept: 'application/json',
@@ -38,13 +42,13 @@ export const NewReportCategoryStep = () => {
         },
       )
 
-      const data = (await response.json()) as { display_name?: string }
+      const data:LocationGPS = (await response.json());
 
       setDraft((current) => ({
         ...current,
         location: coordinates,
         addressLabel:
-          data.display_name || `${coordinates.lat.toFixed(5)}, ${coordinates.lng.toFixed(5)}`,
+        `${data.address.road || 'Desconocida'}, ${data.address.county || 'Desconocida'}, ${data.address.state || 'Desconocida'}` || `${coordinates.lat.toFixed(5)}, ${coordinates.lng.toFixed(5)}`,
       }))
     } catch {
       setDraft((current) => ({

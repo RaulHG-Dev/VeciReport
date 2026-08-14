@@ -10,6 +10,7 @@ import { cn } from '../../utils/cn'
 
 interface LocationPickerMapProps {
   onLocationChange: (coordinates: { lat: number; lng: number }) => void
+  value?: { lat: number; lng: number } | null
   className?: string
 }
 
@@ -25,14 +26,32 @@ const defaultMarkerIcon = L.icon({
   shadowSize: [41, 41],
 })
 
-export const LocationPickerMap = ({ onLocationChange, className }: LocationPickerMapProps) => {
+export const LocationPickerMap = ({ onLocationChange, value, className }: LocationPickerMapProps) => {
   const [mapInstance, setMapInstance] = useState<LeafletMap | null>(null)
-  const [markerPosition, setMarkerPosition] = useState<[number, number]>(defaultCenter)
+  const [markerPosition, setMarkerPosition] = useState<[number, number]>(() => {
+    return value ? [value.lat, value.lng] : defaultCenter
+  })
   const [isLocating, setIsLocating] = useState(false)
   const [geolocationError, setGeolocationError] = useState('')
 
   const autoGpsLockedRef = useRef(false)
   const latestGpsRequestRef = useRef(0)
+
+  useEffect(() => {
+    if (value) {
+      const isDifferent =
+        Math.abs(value.lat - markerPosition[0]) > 0.000001 ||
+        Math.abs(value.lng - markerPosition[1]) > 0.000001
+
+      if (isDifferent) {
+        const newPos: [number, number] = [value.lat, value.lng]
+        setMarkerPosition(newPos)
+        if (mapInstance) {
+          mapInstance.setView(newPos, mapInstance.getZoom(), { animate: true })
+        }
+      }
+    }
+  }, [value, mapInstance, markerPosition])
 
   const updateMarkerPosition = (position: [number, number], source: 'gps' | 'manual') => {
     if (source === 'manual') {
@@ -132,7 +151,7 @@ export const LocationPickerMap = ({ onLocationChange, className }: LocationPicke
           ref={setMapInstance}
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution='VeciReport'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Marker
