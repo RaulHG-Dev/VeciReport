@@ -33,7 +33,7 @@ export const MyReportsOverview = () => (
     <div className="grid gap-6 xl:grid-cols-[320px_1fr]">
       <aside className="space-y-4">
         <article className="overflow-hidden rounded-2xl border border-border bg-surface shadow-card">
-          <div className="h-20 bg-gradient-to-r from-secondary/15 to-primary/20" />
+          <div className="h-20 bg-linear-to-r from-secondary/15 to-primary/20" />
           <div className="px-4 pb-4 pt-2 text-center">
             <img
               src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=120&q=80"
