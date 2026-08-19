@@ -1,10 +1,11 @@
 import { navItems } from '../../services/dashboard.mock'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { cn } from '../../utils/cn'
 import {
   DocumentIcon,
   HomeIcon,
   ListIcon,
+  LogoutIcon,
   MapIcon,
   PlusIcon,
   UserIcon,
@@ -23,10 +24,17 @@ interface SidebarProps {
   activeItem?: 'home' | 'map' | 'reports' | 'my-reports' | 'profile'
 }
 
-export const Sidebar = ({ compact = false, activeItem = 'home' }: SidebarProps) => (
-  <aside
+export const Sidebar = ({ compact = false, activeItem = 'home' }: SidebarProps) => {
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('colony-invite-code')
+    navigate('/login')
+  }
+
+  return <aside
     className={cn(
-      'flex h-full w-full flex-col justify-between border-r border-border bg-surface py-6 transition-all',
+      'sticky top-0 flex h-screen w-full flex-col justify-between border-r border-border bg-surface py-6 transition-all',
       compact ? 'px-2' : 'px-4',
     )}
   >
@@ -92,15 +100,29 @@ export const Sidebar = ({ compact = false, activeItem = 'home' }: SidebarProps) 
       </nav>
     </div>
 
-    <NavLink
-      to="/reportar"
-      title="Reportar"
-      className={cn(
-        'rounded-xl bg-secondary text-center text-sm font-bold text-white shadow-soft transition hover:bg-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2',
-        compact ? 'mx-auto grid size-11 place-items-center rounded-2xl' : 'w-full px-4 py-3',
-      )}
-    >
-      {compact ? <PlusIcon className="size-4" /> : '+ Reportar'}
-    </NavLink>
+    <div className={cn('flex flex-col gap-2', compact ? 'items-center' : 'w-full')}>
+      <NavLink
+        to="/reportar"
+        title="Reportar"
+        className={cn(
+          'grid place-items-center rounded-xl bg-secondary text-center text-sm font-bold text-white shadow-soft transition hover:bg-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2',
+          compact ? 'size-11 rounded-2xl' : 'w-full px-4 py-3',
+        )}
+      >
+        {compact ? <PlusIcon className="size-4" /> : '+ Reportar'}
+      </NavLink>
+      <button
+        type="button"
+        onClick={handleLogout}
+        title="Cerrar sesión"
+        className={cn(
+          'flex items-center gap-3 rounded-xl text-left text-sm font-semibold text-red-700 transition hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500',
+          compact ? 'size-11 justify-center' : 'w-full px-4 py-3',
+        )}
+      >
+        <LogoutIcon className="size-4" />
+        {!compact && 'Cerrar sesión'}
+      </button>
+    </div>
   </aside>
-)
+}

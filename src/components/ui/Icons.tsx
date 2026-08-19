@@ -15,6 +15,7 @@ import {
   faMap,
   faPlus,
   faRoad,
+  faRightFromBracket,
   faShareNodes,
   faTrashCan,
   faTree,
@@ -85,6 +86,10 @@ export const MessageIcon = ({ className }: IconProps) => (
 
 export const ShareIcon = ({ className }: IconProps) => (
   <FontAwesomeIcon icon={faShareNodes} className={className} />
+)
+
+export const LogoutIcon = ({ className }: IconProps) => (
+  <FontAwesomeIcon icon={faRightFromBracket} className={className} />
 )
 
 export const CopyIcon = ({ className }: IconProps) => (

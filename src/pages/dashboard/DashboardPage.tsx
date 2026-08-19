@@ -17,7 +17,7 @@ export const DashboardPage = () => {
     <>
       <div
         className={cn(
-          'min-h-screen w-full overflow-hidden bg-background lg:grid',
+          'min-h-screen w-full bg-background lg:grid',
           isExpanded ? 'lg:grid-cols-[260px_1fr]' : 'lg:grid-cols-[88px_1fr]',
         )}
       >
