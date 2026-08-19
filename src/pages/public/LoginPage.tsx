@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { HomeIcon } from '../../components/ui/Icons'
 
 interface LoginForm {
   identifier: string
@@ -26,72 +27,77 @@ export const LoginPage = () => {
   }
 
   return (
-    <main className="min-h-screen px-4 py-10 sm:px-6 lg:px-12">
-      <section className="mx-auto grid max-w-4xl gap-6 rounded-3xl border border-border bg-surface p-6 shadow-soft lg:grid-cols-[1fr_1fr] lg:p-10">
-        <div className="space-y-4">
-          <p className="inline-flex rounded-full bg-secondary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-secondary">
-            Acceso vecinal
-          </p>
-          <h1 className="font-display text-5xl font-extrabold text-tertiary">Inicia sesion</h1>
-          <p className="text-sm text-muted">
-            Gestiona reportes, notificaciones y avances de tu comunidad desde un solo lugar.
-          </p>
+    <main className="login-page">
+      <section className="login-shell">
+        <div className="login-visual">
+          <Link to="/" className="login-brand"><HomeIcon /><span>VeciReport</span></Link>
+          <div className="login-message">
+            <h1>Tu voz, tu comunidad.</h1>
+            <p>Inicia sesión para reportar incidencias, colaborar con tus vecinos y mejorar tu entorno.</p>
+          </div>
+        </div>
+
+        <div className="login-content">
+          <div className="login-heading">
+            <h2>Bienvenido de nuevo</h2>
+            <p>Por favor, ingresa tus datos para acceder a tu cuenta.</p>
+          </div>
           {colonyName && (
-            <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-700">
+            <p className="login-notice login-notice-success">
               Colonia registrada: {colonyName}. Ya puedes entrar a tu panel.
             </p>
           )}
           {registrationSuccess && (
-            <p className="rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700">
+            <p className="login-notice login-notice-info">
               Registro vecinal completado para codigo {colonyCode || 'de colonia'}. Inicia sesion para continuar.
             </p>
           )}
-        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-border bg-background p-5">
+          <form onSubmit={handleSubmit} className="login-form">
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Correo</span>
+            <span>Correo Electrónico</span>
             <input
               required
               value={form.identifier}
               onChange={(event) => setForm((prev) => ({ ...prev, identifier: event.target.value }))}
-              className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
-              placeholder="correo@colonia.mx"
+              placeholder="ejemplo@correo.com"
             />
           </label>
 
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Contrasena</span>
+            <span>Contraseña</span>
             <input
               type="password"
               required
               value={form.password}
               onChange={(event) => setForm((prev) => ({ ...prev, password: event.target.value }))}
-              className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
-              placeholder="Ingresa tu contrasena"
+              placeholder="••••••••"
             />
           </label>
 
+          <div className="login-options"><label><input type="checkbox" /> <span>Recordarme</span></label><a href="#recuperar">¿Olvidaste tu contraseña?</a></div>
+
           <button
             type="submit"
-            className="w-full rounded-xl bg-secondary px-5 py-3 text-sm font-bold text-white transition hover:bg-tertiary"
+            className="login-submit"
           >
-            Entrar al panel
+            Iniciar Sesión
           </button>
 
-          <p className="text-center text-xs text-muted">
-            ¿No has registrado tu comunidad?{' '}
+          <p className="login-register">
+            ¿No tienes una cuenta?{' '}
             <Link to="/" className="font-semibold text-secondary hover:underline">
-              Hazlo aqui
+              Regístrate
             </Link>
           </p>
-          <p className="text-center text-xs text-muted">
-            ¿Eres vecino y tienes codigo?{' '}
+          <p className="login-register login-neighbor">
+            ¿Eres vecino y tienes código?{' '}
             <Link to="/unirse" className="font-semibold text-secondary hover:underline">
-              Registrate aqui
+              Regístrate aquí
             </Link>
           </p>
-        </form>
+          </form>
+        </div>
       </section>
     </main>
   )

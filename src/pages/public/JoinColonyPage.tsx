@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { CheckIcon, HomeIcon } from '../../components/ui/Icons'
 
 interface NeighborRegisterForm {
   colonyCode: string
@@ -53,99 +54,98 @@ export const JoinColonyPage = () => {
   }
 
   return (
-    <main className="min-h-screen px-4 py-10 sm:px-6 lg:px-12">
-      <section className="mx-auto grid max-w-4xl gap-6 rounded-3xl border border-border bg-surface p-6 shadow-soft lg:grid-cols-[1fr_1fr] lg:p-10">
-        <div className="space-y-4">
-          <p className="inline-flex rounded-full bg-secondary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-secondary">
-            Unirse a comunidad
-          </p>
-          <h1 className="font-display text-5xl font-extrabold text-tertiary">Registro vecinal</h1>
-          <p className="text-sm text-muted">
+    <main className="join-page">
+      <header className="join-header"><Link to="/" className="join-brand"><HomeIcon /> VeciReport</Link><Link to="/login" className="join-help">Ayuda</Link></header>
+      <section className="join-shell">
+        <div className="join-intro">
+          <p className="join-eyebrow">Unirse a comunidad</p>
+          <h1>Registro<br />vecinal</h1>
+          <p className="join-description">
             Ingresa el codigo unico de tu comunidad y crea tu perfil para colaborar en reportes.
           </p>
-          <div className="rounded-xl border border-border bg-background px-4 py-3">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted">Que necesitas</p>
-            <ul className="mt-2 space-y-1 text-sm text-tertiary">
-              <li>Codigo de comunidad compartido por el representante.</li>
-              <li>Nombre completo para identificarte en la comunidad.</li>
-              <li>Correo y contrasena para ingresar despues.</li>
+          <div className="join-requirements">
+            <p>Que necesitas</p>
+            <ul>
+              <li><CheckIcon /> Codigo de comunidad compartido por el representante.</li>
+              <li><CheckIcon /> Nombre completo para identificarte en la comunidad.</li>
+              <li><CheckIcon /> Correo y contrasena para ingresar despues.</li>
             </ul>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-border bg-background p-5">
+        <form onSubmit={handleSubmit} className="join-form">
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Codigo de comunidad</span>
+            <span>Codigo de comunidad</span>
             <input
               required
               value={form.colonyCode}
               onChange={(event) => setForm((prev) => ({ ...prev, colonyCode: event.target.value.toUpperCase() }))}
-              className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm uppercase outline-none transition focus:border-secondary"
+              className="join-input uppercase"
               placeholder="SANRAFAEL-4821"
             />
           </label>
 
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Nombre completo</span>
+            <span>Nombre completo</span>
             <input
               required
               value={form.fullName}
               onChange={(event) => setForm((prev) => ({ ...prev, fullName: event.target.value }))}
-              className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
+              className="join-input"
               placeholder="Tu nombre"
             />
           </label>
 
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Correo</span>
+            <span>Correo</span>
             <input
               type="email"
               required
               value={form.email}
               onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-              className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
+              className="join-input"
               placeholder="correo@colonia.mx"
             />
           </label>
 
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Contrasena</span>
+            <span>Contrasena</span>
             <input
               type="password"
               required
               value={form.password}
               onChange={(event) => setForm((prev) => ({ ...prev, password: event.target.value }))}
-              className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
+              className="join-input"
               placeholder="Minimo 6 caracteres"
             />
           </label>
 
           <label className="block space-y-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Confirmar contrasena</span>
+            <span>Confirmar contrasena</span>
             <input
               type="password"
               required
               value={form.confirmPassword}
               onChange={(event) => setForm((prev) => ({ ...prev, confirmPassword: event.target.value }))}
-              className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm outline-none transition focus:border-secondary"
+              className="join-input"
               placeholder="Repite tu contrasena"
             />
           </label>
 
           {error && (
-            <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-medium text-red-700">
+            <p className="join-error">
               {error}
             </p>
           )}
 
           <button
             type="submit"
-            className="w-full rounded-xl bg-secondary px-5 py-3 text-sm font-bold text-white transition hover:bg-tertiary"
+            className="join-submit"
           >
             Crear perfil vecinal
           </button>
 
-          <p className="text-center text-xs text-muted">
+          <p className="join-login-link">
             Ya tienes cuenta?{' '}
             <Link to="/login" className="font-semibold text-secondary hover:underline">
               Inicia sesion
